@@ -1,3 +1,7 @@
 <?php
-echo 'Bonjour'.' '. $_GET['first_name'];
+if ($_GET['first_name'] == null){
+  echo 'Bonjour anonyme !';
+} else {
+  echo 'Bonjour'.' '.htmlspecialchars($_GET['first_name'].' '.'!');
+}
 ?>

@@ -1,16 +1,21 @@
 <?php
-if (isset($_GET['first_name']) || isset($_POST['first_name'])) {
-    $first_name = isset($_GET['first_name']) ? htmlspecialchars($_GET['first_name']) : htmlspecialchars($_POST['first_name']);
+session_start();
 
-    if (empty($first_name)) {
-        echo 'Bonjour anonyme';
-    } else {
-        echo 'Bonjour ' . $first_name;
-    }
+if(isset($_GET['first_name'])){
+  $first_name = $_GET['first_name'];
+
+} else if (isset($_POST['first_name']) and !empty($_POST['first_name'])) {
+  $_SESSION['name'] = $_POST['first_name'];
+  $first_name = $_POST['first_name'];
+
+} else if (isset($_SESSION['name'])){
+  $first_name = $_SESSION['name'];
+  
+
+} else {
+  $first_name = 'Anonyme';
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -24,6 +29,8 @@ if (isset($_GET['first_name']) || isset($_POST['first_name'])) {
  <p>Votre nom : <input type="text" name="first_name" /></p>
  <p><input type="submit" name="OK" value="OK"></p>
 </form>
+<?php 
+echo $first_name; ?>
 
 </body>
 </html>

@@ -15,6 +15,11 @@ if(isset($_GET['first_name'])){
 } else {
   $first_name = 'Anonyme';
 }
+
+if(isset($_POST['reset'])){
+   unset($_SESSION['name']);
+   header("Location: exercice.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +33,7 @@ if(isset($_GET['first_name'])){
 <form action="exercice.php" method="post">
  <p>Votre nom : <input type="text" name="first_name" /></p>
  <p><input type="submit" name="OK" value="OK"></p>
+ <p><input type="submit" name="reset" value="Reset"></p>
 </form>
 <?php 
 echo $first_name; ?>

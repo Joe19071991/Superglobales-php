@@ -1,15 +1,16 @@
 <?php
-if (isset($_GET['first_name'])){
-  $first_name = htmlspecialchars($_GET['first_name']);
-} elseif (isset($_POST['first_name'])){
-    $first_name = htmlspecialchars($_POST['first_name']);
-    if (empty($first_name)){
-        echo 'Bonjour Anonyme';
+if (isset($_GET['first_name']) || isset($_POST['first_name'])) {
+    $first_name = isset($_GET['first_name']) ? htmlspecialchars($_GET['first_name']) : htmlspecialchars($_POST['first_name']);
+
+    if (empty($first_name)) {
+        echo 'Bonjour anonyme';
     } else {
-        echo 'Bonjour ' . htmlspecialchars($first_name);
+        echo 'Bonjour ' . $first_name;
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
